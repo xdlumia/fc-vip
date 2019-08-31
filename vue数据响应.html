@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue数据响应</title>
+</head>
+<body>
+    <div id="app">
+        {{name}}
+        <br>
+        {{age}}
+    </div>
+</body>
+<script>
+    function nodeToFragment(node){
+        // 文档树的片段 不直接操作真实的Dom
+        let falg = document.createDocumentFragment()
+        let child
+        while(child = node.firstChild){
+            flag.appendChild(child)
+        }
+        return flag
+    }
+    // 定义vue
+    function Vue(options){
+        this.data = options.data
+        let _data = document.querySelector('options.el')
+    }
+
+    const app = new Vue({
+        el:'#app',
+        data:{
+            name:'睡不着',
+            age:'18'
+        }
+    })
+</script>
+</html>
