@@ -15,9 +15,24 @@
 </body>
 <script>
     // 订阅者
-    function Waccher(vm, node, name){
-        Det.target = this
+    function Watcher(vm, node, name){
+        Dep.target = this
+        this.vm = vm
+        this.name = name
+        this.node = node
+        this.update()
+        Dep.target = null
     }
+    Watcher.prototype = {
+        get:function(){
+            this.value = this.vm[this.name]
+        },
+        update:function(){
+            this.get()
+            this.node.nodeValue = this.value
+        }
+    }
+
     // 主题对象构造函数
     function Dep(){
         this.subs = [] //存放这个属性对应的watch
@@ -46,7 +61,6 @@
         let dep = new Dep()
         Object.defineProperty(obj,key,{
             get:function(){
-                console.log(Dep.target);
                 if(Dep.target){
                     dep.addSub(Dep.target )
                 }
@@ -74,6 +88,7 @@
                 // 清空空格
                 name = name.trim()
                 node.textContent =vm.data[name]
+                new Watcher(vm,node,name)
             }
         }
     }
