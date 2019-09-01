@@ -14,12 +14,17 @@
     </div>
 </body>
 <script>
+    
+    function compile(node,vm){
+        console.dir(node);
+    }
     // dom节点劫持
-    function nodeToFragment(node){
+    function nodeToFragment(node,vm){
         // 文档树的片段 不直接操作真实的Dom
         let flag = document.createDocumentFragment()
-        let child
+        let child 
         while(child = node.firstChild){
+            compile(child,vm)
             flag.appendChild(child)
         }
         return flag
@@ -28,7 +33,9 @@
     function Vue(options){
         this.data = options.data
         let _id = document.querySelector(options.el)
-        nodeToFragment(_id)
+        let _dom = nodeToFragment(_id,this)
+        _id.appendChild(_dom)
+
     }
 
     const app = new Vue({
