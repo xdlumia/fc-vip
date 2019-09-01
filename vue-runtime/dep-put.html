@@ -14,10 +14,10 @@
     </div>
 </body>
 <script>
+    // dom节点劫持
     function nodeToFragment(node){
         // 文档树的片段 不直接操作真实的Dom
         let flag = document.createDocumentFragment()
-        
         let child
         while(child = node.firstChild){
             flag.appendChild(child)
