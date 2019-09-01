@@ -16,7 +16,8 @@
 <script>
     function nodeToFragment(node){
         // 文档树的片段 不直接操作真实的Dom
-        let falg = document.createDocumentFragment()
+        let flag = document.createDocumentFragment()
+        
         let child
         while(child = node.firstChild){
             flag.appendChild(child)
@@ -26,7 +27,8 @@
     // 定义vue
     function Vue(options){
         this.data = options.data
-        let _data = document.querySelector('options.el')
+        let _id = document.querySelector(options.el)
+        nodeToFragment(_id)
     }
 
     const app = new Vue({
