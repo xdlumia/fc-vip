@@ -44,6 +44,7 @@
         // 派发更新
         notify:function(){
             this.subs.forEach(sub => {
+                console.log(sub);
                 sub.update( )
             })
         }
@@ -97,8 +98,11 @@
         // 文档树的片段 不直接操作真实的Dom
         let flag = document.createDocumentFragment()
         let child 
+        // 遍历传过来的节点，如果node下面还存在节点，那就无限循环，直至node.firstChild == undefined
         while(child = node.firstChild){
+            // 运行数据编辑赋值
             compile(child,vm)
+            // 每次循环的时候往我们的空白文档片段上添加获取到的节点
             flag.appendChild(child)
         }
         return flag
@@ -121,6 +125,5 @@
             age:'18'
         }
     })
-    console.log(app);
 </script>
 </html>
